@@ -1,2 +1,108 @@
 #Ćwiczenia 1
 mkdir ~/GEiP
+conda activate GEiP
+mkdir Lab1
+cd Lab1
+seqkit grep -p "scaffold2" /home/mkonczal/Teaching/GEiP/Data/Reference/SBS_final.scaffolds.fasta > scaffold2.fasta
+samtools faidx scaffold2.fasta
+cut -f 2 scaffold2.fasta.fai
+
+wynik:10659794
+
+cp /home/mkonczal/Teaching/GEiP/Data/Fastq/SRR7054135/* .
+cp /home/mkonczal/Teaching/GEiP/Data/Fastq/SRR7054162/* .
+cp /home/mkonczal/Teaching/GEiP/Data/Fastq/SRR7054133/* .
+cp /home/mkonczal/Teaching/GEiP/Data/Fastq/SRR7054147/* .
+
+fastqc SRR7054135_pass_1.fastq.gz SRR7054135_pass_2.fastq.gz
+fastqc SRR7054162_pass_1.fastq.gz SRR7054162_pass_2.fastq.gz
+fastqc SRR7054133_pass_1.fastq.gz SRR7054133_pass_2.fastq.gz
+fastqc SRR7054147_pass_1.fastq.gz SRR7054147_pass_2.fastq.gz
+
+-------------------------
+Read1 before filtering:
+total reads: 29711016
+total bases: 3713877000
+Q20 bases: 3425908090(92.2461%)
+Q30 bases: 3180728297(85.6444%)
+
+Read1 after filtering:
+total reads: 29480224
+total bases: 3642959840
+Q20 bases: 3376487897(92.6853%)
+Q30 bases: 3143631476(86.2933%)
+
+Read2 before filtering:
+total reads: 29711016
+total bases: 3713877000
+Q20 bases: 3509810058(94.5053%)
+Q30 bases: 3306199560(89.0229%)
+
+Read2 aftering filtering:
+total reads: 29480224
+total bases: 3642959840
+Q20 bases: 3454721388(94.8328%)
+Q30 bases: 3262036292(89.5436%)
+
+Filtering result:
+reads passed filter: 58960448
+reads failed due to low quality: 187872
+reads failed due to too many N: 273712
+reads failed due to too short: 0
+reads with adapter trimmed: 2493470
+bases trimmed due to adapters: 84137590
+
+Duplication rate: 2.52885%
+
+Insert size peak (evaluated by paired-end reads): 180
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp -i SRR7054135_pass_1.fastq.gz -I SRR7054135_pass_2.fastq.gz -o SRR7054135_filtered_1.fastq.gz -O SRR705
+fastp v0.19.5, time used: 269 seconds
+Read1 before filtering:
+total reads: 39298468
+total bases: 4912308500
+Q20 bases: 4530394008(92.2254%)
+Q30 bases: 4221264279(85.9324%)
+
+Read1 after filtering:
+total reads: 38979174
+total bases: 4815628258
+Q20 bases: 4467892749(92.779%)
+Q30 bases: 4175739506(86.7122%)
+
+Read2 before filtering:
+total reads: 39298468
+total bases: 4912308500
+Q20 bases: 4676462923(95.1989%)
+Q30 bases: 4456931040(90.7299%)
+
+Read2 aftering filtering:
+total reads: 38979174
+total bases: 4815628258
+Q20 bases: 4604168665(95.6089%)
+Q30 bases: 4398081215(91.3293%)
+
+Filtering result:
+reads passed filter: 77958348
+reads failed due to low quality: 403442
+reads failed due to too many N: 235146
+reads failed due to too short: 0
+reads with adapter trimmed: 3406888
+bases trimmed due to adapters: 113537780
+
+Duplication rate: 2.98251%
+
+Insert size peak (evaluated by paired-end reads): 189
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp -i SRR7054162_pass_1.fastq.gz -I SRR7054162_pass_2.fastq.gz -o SRR7054162_filtered_1.fastq.gz -O SRR7054162_filtered_2.fastq.gz
+fastp v0.19.5, time used: 311 seconds
+
+-------------------------
+
+bwa index scaffold2.fasta
